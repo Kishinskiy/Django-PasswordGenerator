@@ -15,7 +15,7 @@
             <h1>Password Generator</h1>
         </div>
         <div class="password col-lg-12 jumbotron overflow-auto  text-center">
-            <p class="display-4 d-block">{{ password }}</p>
+            <p id="password" class="display-4 d-block">{{ password }}</p>
         </div>
         <div class="button col-lg-3 mx-auto">
         <button type="button" class="btn form-btn btn-primary btn-lg btn-block">copy to clipboard</button>
@@ -26,7 +26,7 @@
             <div class="img  col-lg-4 ">
                 <img class="mx-auto" src="https://colorlib.com/etc/lf/Login_v1/images/img-01.png" alt="IMG">
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="form">
                     <form action="{% url 'password' %}" class="px-4 py-3">
                         <div class="password_length">
@@ -58,7 +58,7 @@
                         </div>
 
 
-                        <button type="submit" class="btn form-btn btn-primary btn-lg btn-block">Generate
+                        <button type="button" onclick="myFunction()" class="btn form-btn btn-primary btn-lg btn-block">Generate
                             Password</button>
                     </form>
                 </div>
@@ -77,3 +77,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script src="{% static 'passgen/script.js' %}"></script>
+<script>
+function myFunction(){
+    url = "http://127.0.0.1:8000/newpassword/?length=6&uppercase=on&numbers=on&special=on"
+    var x = new XMLHttpRequest();
+    x.open("GET", url, true);
+    x.send(null)
+    document.getElementById("password").innerHTML = "{{ password }}";
+
+}
+</script>
+
+{% comment %} http://127.0.0.1:8000/newpassword/?length=6&uppercase=on&numbers=on&special=on {% endcomment %}
