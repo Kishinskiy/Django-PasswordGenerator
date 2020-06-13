@@ -18,7 +18,7 @@
             <p id="password" class="display-4 d-block">{{ password }}</p>
         </div>
         <div class="button col-lg-3 mx-auto">
-        <button type="button" class="btn form-btn btn-primary btn-lg btn-block">copy to clipboard</button>
+            <button type="button" class="btn form-btn btn-primary btn-lg btn-block">copy to clipboard</button>
         </div>
     </div>
     <div class="passform">
@@ -58,8 +58,10 @@
                         </div>
 
 
-                        <button id="pass_btn" type="button" onclick="myFunction()" class="btn form-btn btn-primary btn-lg btn-block">Generate
-                            Password</button>
+
+                        <button type="button" id="generate" class="btn form-btn btn-primary btn-lg btn-block">
+                            Generate Password
+                        </button>
                     </form>
                 </div>
             </div>
@@ -77,5 +79,49 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script src="{% static 'passgen/script.js' %}"></script>
+
+<script>
+    function myFunction() {
+        url = "http://127.0.0.1:8000/newpassword/?length=6&uppercase=on&numbers=on&special=on"
+        var x = new XMLHttpRequest();
+        x.open("GET", url, true);
+        x.send(null)
+        document.getElementById("password").innerHTML = "{{ password }}";
+
+    }
+
+    const placeholder = document.querySelector('p#password');
+    const generateBtn = document.querySelector('#generate');
+
+    const toHumanBool = (b) => {
+        return b ? 'on' : 'off';
+    }
+
+    const updatePassword = (url) => {
+        fetch(url).then((resp) => resp.json()).then((res) => {
+            placeholder.innerHTML = res.password;
+        });
+    };
+
+    generateBtn.addEventListener('click', (e) => {
+        const length = document.querySelector('input[name=length]').value;
+        const toUpperCase = document.querySelector('input[name=uppercase]').checked;
+        const includeNumbers = document.querySelector('input[name=numbers]').checked;
+        const includeSpecialChars = document.querySelector('input[name=special]').checked;
+
+        const queryParams = {
+            length,
+            uppercase: toHumanBool(toUpperCase),
+            numbers: toHumanBool(includeNumbers),
+            includeSpecialChars: toHumanBool(includeSpecialChars),
+        };
+
+        const query = new URLSearchParams(queryParams).toString();
+        updatePassword(`/newpassword/?${query}`)
+        console.log(`/newpassword/?${query}`);
+    });
+
+
+</script>
 
 {% comment %} http://127.0.0.1:8000/newpassword/?length=6&uppercase=on&numbers=on&special=on {% endcomment %}
