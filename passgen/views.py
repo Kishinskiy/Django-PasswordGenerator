@@ -43,5 +43,4 @@ def password(request):
         )
     })
 
-    return JsonResponse({'password': ''.join(random.choice(chars) for _ in range(size))})
 

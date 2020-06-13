@@ -5,13 +5,13 @@ $('#length').slider({
 	}
 });
 
-function myFunction() {
-	url = "/newpassword/?length=6&uppercase=on&numbers=on&special=on"
-	var x = new XMLHttpRequest();
-	x.open("GET", url, true);
-	x.send(null)
-	document.getElementById("password").innerHTML = x.responseText;
-}
+// function myFunction() {
+// 	url = "/newpassword/?length=6&uppercase=on&numbers=on&special=on"
+// 	var x = new XMLHttpRequest();
+// 	x.open("GET", url, true);
+// 	x.send(null)
+// 	document.getElementById("password").innerHTML = x.responseText;
+// }
 
 // $('#pass_btn').get("/newpassword/?length=6&uppercase=on&numbers=on&special=on", function (data) {
 // 	var msg = data;
