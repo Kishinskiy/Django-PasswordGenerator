@@ -1,5 +1,7 @@
 import random
 import string
+from django.http import JsonResponse
+
 
 from django.shortcuts import render
 
@@ -18,4 +20,5 @@ def password(request):
         chars = chars + string.digits
     if request.GET.get('special'):
         chars = chars + symbols
-    return render(request, 'passgen/home.html', {'password': ''.join(random.choice(chars) for _ in range(size))})
+    # return render(request, 'passgen/home.html', {'password': ''.join(random.choice(chars) for _ in range(size))})
+    return JsonResponse({'password': ''.join(random.choice(chars) for _ in range(size))})

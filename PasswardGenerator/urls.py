@@ -18,6 +18,6 @@ from django.urls import path
 from passgen import  views
 
 urlpatterns = [
-    path('', views.password, name='password'),
+    path('', views.home, name='home'),
     path('newpassword/', views.password, name='password'),
 ]
