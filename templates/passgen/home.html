@@ -81,15 +81,6 @@
 <script src="{% static 'passgen/script.js' %}"></script>
 
 <script>
-    function myFunction() {
-        url = "http://127.0.0.1:8000/newpassword/?length=6&uppercase=on&numbers=on&special=on"
-        var x = new XMLHttpRequest();
-        x.open("GET", url, true);
-        x.send(null)
-        document.getElementById("password").innerHTML = "{{ password }}";
-
-    }
-
     const placeholder = document.querySelector('p#password');
     const generateBtn = document.querySelector('#generate');
 
@@ -123,5 +114,3 @@
 
 
 </script>
-
-{% comment %} http://127.0.0.1:8000/newpassword/?length=6&uppercase=on&numbers=on&special=on {% endcomment %}
