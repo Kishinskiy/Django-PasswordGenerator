@@ -42,3 +42,6 @@ def password(request):
             has_special_chars='special' in request.GET,
         )
     })
+
+    return JsonResponse({'password': ''.join(random.choice(chars) for _ in range(size))})
+

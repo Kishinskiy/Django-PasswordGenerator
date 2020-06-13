@@ -58,6 +58,7 @@
                         </div>
 
 
+
                         <button type="button" id="generate" class="btn form-btn btn-primary btn-lg btn-block">
                             Generate Password
                         </button>
@@ -78,6 +79,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script src="{% static 'passgen/script.js' %}"></script>
+
 <script>
     function myFunction() {
         url = "http://127.0.0.1:8000/newpassword/?length=6&uppercase=on&numbers=on&special=on"
